@@ -40,6 +40,7 @@
                     <option value="Country">Country</option>
                     <option value="Blues">Blues</option>
                     <option value="Reggae">Reggae</option>
+                       <option value="Lo-Fi">Lo-Fi</option>    
                 </optgroup>
                 
                 <optgroup label="Electrónica / Electronic">
@@ -50,7 +51,7 @@
                     <option value="Dubstep">Dubstep</option>
                     <option value="Synthwave">Synthwave</option>
                     <option value="Future Funk">Future Funk</option>
-                    <option value="Lo-Fi">Lo-Fi</option>
+
                     <option value="IDM">IDM (Intelligent Dance Music)</option>
                     <option value="Ambient">Ambient</option>
                 </optgroup>
@@ -120,7 +121,7 @@
                     <option value="Future Bass">Future Bass</option>
                     <option value="Tech House">Tech House</option>
                     <option value="French House">French House</option>
-                    <option value="Lofi House">Lofi House</option>
+                    <option value="Lofi House Music">Lofi House</option>
                     <option value="Electro House">Electro House</option>
                     <option value="Disco House">Disco House</option>
                     <option value="Minimal Techno">Minimal Techno</option>
@@ -427,28 +428,28 @@
             let prompt = '';
 
             if (genero) {
-                prompt += ` ${genero}, `;
+                prompt += ` Create a track ${genero}, `;
             }
             if (subgenero) {
-                prompt += `${subgenero}, `;
+                prompt += ` ${subgenero}, vibes`;
             }
             if (instrumentacion) {
                 prompt += ` ${instrumentacion}, `;
             }
             if (produccion) {
-                prompt += `Production: ${produccion}, `;
+                prompt += `Production ${produccion}, `;
             }
             if (atmosfera) {
-                prompt += `Mood: ${atmosfera}, `;
+                prompt += `Mood ${atmosfera}, `;
             }
             if (emocion) {
-                prompt += `Emotion: ${emocion}, `;
+                prompt += ` ${emocion}, Vibe `;
             }
             if (epoca) {
-                prompt += `Era: ${epoca}, `;
+                prompt += `Era ${epoca}, `;
             }
             if (estructura) {
-                prompt += `Structure: ${estructura}, `;
+                prompt += `Structure ${estructura}, `;
             }
             if (exclusiones) {
                 prompt += `Exclusions: ${exclusiones}`;
