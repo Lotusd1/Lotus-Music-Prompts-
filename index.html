@@ -40,7 +40,11 @@
                     <option value="Country">Country</option>
                     <option value="Blues">Blues</option>
                     <option value="Reggae">Reggae</option>
-                       <option value="Lo-Fi">Lo-Fi</option>    
+                    <option value="Lo-Fi">Lo-Fi</option>    
+                    <option value="Indie">Indie</option>    
+                                        <option value="Classic Music">Classic Music/option>    
+                                            <option value="Folk">Folk/option> 
+                    
                 </optgroup>
                 
                 <optgroup label="Electrónica / Electronic">
@@ -51,9 +55,9 @@
                     <option value="Dubstep">Dubstep</option>
                     <option value="Synthwave">Synthwave</option>
                     <option value="Future Funk">Future Funk</option>
-
                     <option value="IDM">IDM (Intelligent Dance Music)</option>
                     <option value="Ambient">Ambient</option>
+                                        <option value="Experimental Electronic">Experimental Electronic</option>
                 </optgroup>
                 
                 <optgroup label="Urbanos / Urban">
@@ -107,6 +111,7 @@
                     <option value="Post Hardcore">Post Hardcore</option>
                     <option value="Progressive Metal">Progressive Metal</option>
                     <option value="Thrash Metal">Thrash Metal</option>
+                                        <option value="Folk Metal">Folk Metal</option>
                     <option value="Nu Metal">Nu Metal</option>
                     <option value="Death Metal">Death Metal</option>
                     <option value="Metalcore">Metalcore</option>
@@ -121,9 +126,10 @@
                     <option value="Future Bass">Future Bass</option>
                     <option value="Tech House">Tech House</option>
                     <option value="French House">French House</option>
-                    <option value="Lofi House Music">Lofi House</option>
+                    <option value="Experimental Electro House">Experimental House</option>
+                    <option value="Indie Electro House">Indie Electro House</option>                    
                     <option value="Electro House">Electro House</option>
-                     <option value="Electronic Lo-Fi">Electro Lo-fi</option>                   
+                    <option value="Electronic Lo-Fi">Electro Lo-fi</option>                   
                     <option value="Disco House">Disco House</option>
                     <option value="Minimal Techno">Minimal Techno</option>
                     <option value="Future House">Future House</option>
@@ -181,6 +187,8 @@
                     <option value="Liquid Drum and Bass">Liquid Drum and Bass</option>
                     <option value="Riddim">Riddim (Dubstep)</option>
                     <option value="UK Drill Dark">UK Drill Dark</option>
+                                        <option value="UK Garage">UK Garage</option>
+                                                            <option value="Glitch Hop">Gltch Hop</option>
                     <option value="Phonk Brasileiro">Phonk Brasileiro</option>
                     <option value="G-Funk Moderno">G-Funk Moderno</option>
                     <option value="Ambient Black Metal">Ambient Black Metal</option>
@@ -197,9 +205,15 @@
             <label for="instrumentacion" class="block text-orange-700 text-sm font-bold mb-2">Instrumentación Clave / Key Instrumentation:</label>
             <select id="instrumentacion" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 <option value="">Selecciona la instrumentación / Select instrumentation</option>
+                
                 <option value="Guitar">Guitar</option>
+                                <option value="Spanish Guitar"> Spanish Guitar</option>
                 <option value="Piano">Piano</option>
-                <option value="Drums">Drums</option>
+                                <option value="Dark Piano"> Dark Piano</option>
+                
+                <option value="808 Drums"> 808 Drums</option>
+                                <option value="acoustic Drums"> acoustic Drums</option>
+                                                <option value="Glitchy"> Glitchy</option>
                 <option value="Bass">Bass</option>
                 <option value="Groovy Bass"> Groovy Bass</option>                
                 <option value="Synthesizer">Synthesizer</option>
@@ -309,9 +323,12 @@
                 <option value="Danceable">Danceable (Disco/Funk)</option>
                 <option value="Meditative">Meditative (Ambient)</option>
                 <option value="Chaotic">Chaotic (Experimental)</option>
+                                <option value="Saturated">Saturated</option>
                 <option value="Warm">Warm (Analog)</option>
                 <option value="Cold">Cold (Digital)</option>
                 <option value="Dreamy">Dreamy (Vaporwave)</option>
+                                <option value="syncopated">Syncopated</option>
+                                                <option value="Grain Texture">Dreamy (Vaporwave)</option>
             </select>
         </div>
 
@@ -433,7 +450,7 @@
             let prompt = '';
 
             if (genero) {
-                prompt += `Create a ${genero} track Music, `;
+                prompt += `Create a ${genero} track, `;
             }
             if (subgenero) {
                 prompt += ` ${subgenero} vibes,`;
@@ -454,10 +471,10 @@
                 prompt += `Era ${epoca}, `;
             }
             if (estructura) {
-                prompt += `Structure ${estructura}, `;
+                prompt += ` ${estructura}, `;
             }
             if (exclusiones) {
-                prompt += `Exclusions: ${exclusiones}`;
+                prompt += ` ${exclusiones}`;
             }
 
             // Eliminar la coma final si existe
