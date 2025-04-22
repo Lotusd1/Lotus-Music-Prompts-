@@ -314,6 +314,8 @@
             <select id="emocion" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 <option value="">Selecciona una emoción / Select an emotion</option>
        <option value="Joy">Alegría / Joyful</option>
+                       <option value="Chill">Tranquilo / Chill</option>
+                                       <option value="Soulful">Conmovedor / Soulful</option>
 <option value="Sadness">Tristeza / Sadness</option>
 <option value="Anger">Enojo / Anger</option>
 <option value="Fear">Miedo / Fear</option>
@@ -425,13 +427,13 @@
             let prompt = '';
 
             if (genero) {
-                prompt += `Genre: ${genero}, `;
+                prompt += ` ${genero}, `;
             }
             if (subgenero) {
                 prompt += `${subgenero}, `;
             }
             if (instrumentacion) {
-                prompt += `Instrumentation: ${instrumentacion}, `;
+                prompt += ` ${instrumentacion}, `;
             }
             if (produccion) {
                 prompt += `Production: ${produccion}, `;
