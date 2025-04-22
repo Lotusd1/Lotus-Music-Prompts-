@@ -1,0 +1,474 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Prompts para Suno IA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Glacial+Indifference&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Glacial Indifference', sans-serif;
+            background-color: #f97316;
+            background-image: linear-gradient(to bottom, #f97316, #e85d04, #d94503, #c02e02, #a71e01);
+            background-size: 400% 400%;
+            animation: gradient 10s ease infinite;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .titulo-principal { font-family: 'Roboto Slab', serif; }
+    </style>
+</head>
+<body class="bg-orange-500 p-6">
+    <div class="container mx-auto rounded-lg shadow-md bg-orange-100 p-8">
+        <h1 class="titulo-principal text-3xl font-bold text-center text-orange-800 mb-6">Generador de Prompts para Suno IA</h1>
+
+        <div class="mb-4">
+            <label for="genero" class="block text-orange-700 text-sm font-bold mb-2">Género / Genre:</label>
+            <select id="genero" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Selecciona un género / Select a genre</option>
+                
+                <optgroup label="Populares / Mainstream">
+                    <option value="Pop">Pop</option>
+                    <option value="Rock">Rock</option>
+                    <option value="Hip Hop">Hip Hop</option>
+                    <option value="R&B">R&B</option>
+                    <option value="Soul">Soul</option>
+                    <option value="Metal">Metal</option>
+                    <option value="Country">Country</option>
+                    <option value="Blues">Blues</option>
+                    <option value="Reggae">Reggae</option>
+                </optgroup>
+                
+                <optgroup label="Electrónica / Electronic">
+                    <option value="Electronic">Electronic</option>
+                    <option value="Techno">Techno</option>
+                    <option value="House">House</option>
+                    <option value="Drum and Bass">Drum and Bass</option>
+                    <option value="Dubstep">Dubstep</option>
+                    <option value="Synthwave">Synthwave</option>
+                    <option value="Future Funk">Future Funk</option>
+                    <option value="Lo-Fi">Lo-Fi</option>
+                    <option value="IDM">IDM (Intelligent Dance Music)</option>
+                    <option value="Ambient">Ambient</option>
+                </optgroup>
+                
+                <optgroup label="Urbanos / Urban">
+                    <option value="Trap">Trap</option>
+                    <option value="Reggaeton">Reggaeton</option>
+                    <option value="Dancehall">Dancehall</option>
+                    <option value="UK Drill">UK Drill</option>
+                    <option value="G-Funk">G-Funk</option>
+                </optgroup>
+                
+                <optgroup label="Latino / Latin">
+                    <option value="Salsa">Salsa</option>
+                    <option value="Cumbia">Cumbia</option>
+                    <option value="Guaracha">Guaracha</option>
+                    <option value="Bolero">Bolero</option>
+                    <option value="Ballad">Balada</option>
+                </optgroup>
+                
+                <optgroup label="Experimentales / Experimental">
+                    <option value="Experimental">Experimental</option>
+                    <option value="Glitchcore">Glitchcore</option>
+                    <option value="Plunderphonics">Plunderphonics</option>
+                    <option value="Breakcore">Breakcore</option>
+                    <option value="Footwork">Footwork</option>
+                    <option value="Hyperpop">Hyperpop</option>
+                    <option value="Deconstructed Club">Deconstructed Club</option>
+                    <option value="Witch House">Witch House</option>
+                    <option value="Post-Internet">Post-Internet</option>
+                </optgroup>
+                
+                <optgroup label="Especializados / Specialized">
+                    <option value="City pop">City pop</option>
+                    <option value="Jungle">Jungle</option>
+                    <option value="Amapiano">Amapiano</option>
+                    <option value="Digicore">Digicore</option>
+                    <option value="Phonk">Phonk</option>
+                    <option value="Cyberpunk">Cyberpunk (Estética sonora)</option>
+                    <option value="Hybrid Trap">Hybrid Trap</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label for="subgenero" class="block text-orange-700 text-sm font-bold mb-2">Subgénero / Subgenre:</label>
+            <select id="subgenero" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Selecciona un subgénero / Select a subgenre</option>
+                
+                <optgroup label="Rock / Metal">
+                    <option value="Alternative Rock">Alternative Rock</option>
+                    <option value="Grunge">Grunge</option>
+                    <option value="Post Hardcore">Post Hardcore</option>
+                    <option value="Progressive Metal">Progressive Metal</option>
+                    <option value="Thrash Metal">Thrash Metal</option>
+                    <option value="Nu Metal">Nu Metal</option>
+                    <option value="Death Metal">Death Metal</option>
+                    <option value="Metalcore">Metalcore</option>
+                    <option value="Melodic Progressive Metal">Melodic Metal</option>
+                </optgroup>
+                
+                <optgroup label="Electrónica / Electronic">
+                    <option value="Techno">Techno</option>
+                    <option value="Progressive Techno">Progressive Techno</option>
+                    <option value="Dark Techno">Dark Techno</option>
+                    <option value="Deep House">Deep House</option>
+                    <option value="Future Bass">Future Bass</option>
+                    <option value="Tech House">Tech House</option>
+                    <option value="French House">French House</option>
+                    <option value="Lofi House">Lofi House</option>
+                    <option value="Electro House">Electro House</option>
+                    <option value="Disco House">Disco House</option>
+                    <option value="Minimal Techno">Minimal Techno</option>
+                    <option value="Future House">Future House</option>
+                </optgroup>
+                
+                <optgroup label="Hip Hop / Trap">
+                    <option value="Boom Bap">Boom Bap (Hip Hop 90s)</option>
+                    <option value="Trap Latino">Trap Latino</option>
+                    <option value="Emo Trap">Emo Trap</option>
+                    <option value="Drill Trap">Drill Trap</option>
+                    <option value="Jazz Hop">Jazz Hop</option>
+                    <option value="Lofi Hip Hop">Lofi Hip Hop</option>
+                    <option value="Cloud Trap">Cloud Trap</option>
+                    <option value="Trapeton">Trapeton</option>
+                </optgroup>
+                
+                <optgroup label="Jazz / Soul / Funk">
+                    <option value="Bebop">Bebop</option>
+                    <option value="Acid Jazz">Acid Jazz</option>
+                    <option value="Neo Soul">Neo Soul</option>
+                    <option value="Deep Jazz">Deep Jazz</option>
+                    <option value="Funky Disco">Funky Disco</option>
+                    <option value="Jazz House">Jazz House</option>
+                    <option value="Downtempo">Downtempo</option>
+                    <option value="Electro Swing">Electro Swing</option>
+                    <option value="Nu-Disco">Nu-Disco</option>
+                </optgroup>
+                
+                <optgroup label="Experimentales">
+                    <option value="Glitch Hop">Glitch Hop</option>
+                    <option value="Granular Synthesis">Granular Synthesis</option>
+                    <option value="Algorithmic Folk">Algorithmic Folk</option>
+                    <option value="Post-Internet">Post-Internet</option>
+                    <option value="Vaporwave">Vaporwave</option>
+                    <option value="Chillhop">Chillhop</option>
+                    <option value="Neurofunk">Neurofunk</option>
+                    <option value="Jungle Terror">Jungle Terror</option>
+                    <option value="Dark Synthwave">Dark Synthwave</option>
+                </optgroup>
+                
+                <optgroup label="Latino / Tropical">
+                    <option value="Salsa Dura">Salsa Dura</option>
+                    <option value="Cumbia Villera">Cumbia Villera</option>
+                    <option value="Reggaeton Underground">Reggaeton Underground</option>
+                    <option value="Neoperreo">Neoperreo</option>
+                    <option value="Ragga">Ragga</option>
+                    <option value="Bashment">Bashment</option>
+                    <option value="Steppa Dub">Steppa Dub</option>
+                    <option value="2 Tone">2 Tone Ska</option>
+                    <option value="Ska Punk">Ska Punk</option>
+                    <option value="Cumbia Sonidera">Cumbia Sonidera</option>
+                </optgroup>
+                
+                <optgroup label="Especializados">
+                    <option value="Liquid Drum and Bass">Liquid Drum and Bass</option>
+                    <option value="Riddim">Riddim (Dubstep)</option>
+                    <option value="UK Drill Dark">UK Drill Dark</option>
+                    <option value="Phonk Brasileiro">Phonk Brasileiro</option>
+                    <option value="G-Funk Moderno">G-Funk Moderno</option>
+                    <option value="Ambient Black Metal">Ambient Black Metal</option>
+                    <option value="Dungeon Synth">Dungeon Synth</option>
+                    <option value="Haunted Phonk">Haunted Phonk</option>
+                    <option value="Sigilkore">Sigilkore</option>
+                    <option value="Trap Metal">Trap Metal</option>
+                    <option value="Hypergrunge">Hypergrunge</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label for="instrumentacion" class="block text-orange-700 text-sm font-bold mb-2">Instrumentación Clave / Key Instrumentation:</label>
+            <select id="instrumentacion" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Selecciona la instrumentación / Select instrumentation</option>
+                <option value="Guitar">Guitar</option>
+                <option value="Piano">Piano</option>
+                <option value="Drums">Drums</option>
+                <option value="Bass">Bass</option>
+                <option value="Synthesizer">Synthesizer</option>
+                <option value="Vocals">Vocals</option>
+                <option value="Strings">Strings</option>
+                <option value="Brass">Brass</option>
+                <option value="Woodwinds">Woodwinds</option>
+                <option value="Percussion">Percussion</option>
+                <option value="Rhodes Piano">Rhodes Piano (Lo-Fi/Jazz)</option>
+                <option value="808 Bass">808 Bass (Hip Hop/Trap)</option>
+                <option value="Sampled Jazz">Sampled Jazz (Lo-Fi/Hip Hop)</option>
+                <option value="Analog Synths">Analog Synths (Synthwave)</option>
+                <option value="LinnDrum">LinnDrum (80s drums)</option>
+                <option value="Slap Bass">Slap Bass (Funk/Disco)</option>
+                <option value="Vinyl Samples">Vinyl Samples (Lo-Fi)</option>
+                <option value="Modular Synths">Modular Synths (Experimental)</option>
+                <option value="Field Recordings">Field Recordings (Experimental)</option>
+                <option value="Orchestral Hits">Orchestral Hits (Disco)</option>
+                <option value="808 Muted">808 Muted (Trap/Drill)</option>
+                <option value="Dembow Rhythm">Dembow Rhythm (Reggaeton)</option>
+                <option value="Steel Drums">Steel Drums (Dancehall)</option>
+                <option value="Dub Siren">Dub Siren (Steppa Dub)</option>
+                <option value="Melodica">Melodica (Dub/Ska)</option>
+                <option value="Güiro">Güiro (Salsa/Cumbia)</option>
+                <option value="Tres Cubano">Tres Cubano (Salsa)</option>
+                <option value="Acordeón">Acordeón (Cumbia)</option>
+                <option value="Banjo">Banjo (Country)</option>
+                <option value="Pedal Steel">Pedal Steel (Country)</option>
+                <option value="Reese Bass">Reese Bass (DnB/Jungle)</option>
+                <option value="Wobble Bass">Wobble Bass (Dubstep/Riddim)</option>
+                <option value="Amen Break">Amen Break (Jungle)</option>
+                <option value="G-Funk Synth">G-Funk Synth (Moog lead)</option>
+                <option value="Phonk Whistle">Phonk Whistle (Phonk Brasileiro)</option>
+                <option value="Cyberpunk Arp">Cyberpunk Arp (Sequencias futuristas)</option>
+                <option value="Circuit Bent Toys">Circuit Bent Toys</option>
+                <option value="Databent Audio">Databent Audio</option>
+                <option value="Granular Synthesis">Granular Synthesis</option>
+                <option value="Gameboy LSDJ">Gameboy LSDJ</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label for="produccion" class="block text-orange-700 text-sm font-bold mb-2">Características de Producción / Production Characteristics:</label>
+            <select id="produccion" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Selecciona las características / Select characteristics</option>
+                <option value="Clean">Clean</option>
+                <option value="Distorted">Distorted</option>
+                <option value="Reverberant">Reverberant</option>
+                <option value="Lo-Fi">Lo-Fi (hiss de cinta, imperfecciones)</option>
+                <option value="Hi-Fi">Hi-Fi</option>
+                <option value="Acoustic">Acoustic</option>
+                <option value="Electric">Electric</option>
+                <option value="Live">Live</option>
+                <option value="Studio">Studio</option>
+                <option value="Minimalist">Minimalist</option>
+                <option value="Sidechain">Sidechain (Future Funk/EDM)</option>
+                <option value="Bitcrushed">Bitcrushed (Glitch/IDM)</option>
+                <option value="Tape Hiss">Tape Hiss (Lo-Fi/Vintage)</option>
+                <option value="Vinyl Noise">Vinyl Noise (Retro)</option>
+                <option value="Granular">Granular (Experimental)</option>
+                <option value="SP-1200">SP-1200 (Hip Hop vintage)</option>
+                <option value="SP-404 FX">SP-404 (Roland SP FX)</option>
+                <option value="DIY Garage">DIY Garage (Indie)</option>
+                <option value="Cyberpunk">Cyberpunk (Synthwave)</option>
+                <option value="Dreamy">Dreamy (Ambient)</option>
+                <option value="Raw">Raw (Boom Bap)</option>
+                <option value="Trap Hi-Hats">Trap Hi-Hats (Rápidos y complejos)</option>
+                <option value="Dembow Loop">Dembow Loop (Reggaeton base)</option>
+                <option value="Dub Echoes">Dub Echoes (Efectos espaciales)</option>
+                <option value="Ska Upstroke">Ska Upstroke (Guitarra característica)</option>
+                <option value="Cumbia Bass">Cumbia Bass (Línea de bajo prominente)</option>
+                <option value="Salsa Brass">Salsa Brass (Sección metales)</option>
+                <option value="Country Twang">Country Twang (Guitarra característica)</option>
+                <option value="Drill Pianos">Drill Pianos (Melodías oscuras)</option>
+                <option value="Riddim Growls">Riddim Growls (Basses distorsionados)</option>
+                <option value="Jungle Breaks">Jungle Breaks (Breakbeats complejos)</option>
+                <option value="G-Funk Whistle">G-Funk Whistle (Silbido característico)</option>
+                <option value="Cyberpunk Glitch">Cyberpunk Glitch (Interferencias digitales)</option>
+                <option value="Phonk Swing">Phonk Swing (Sampleo lo-fi)</option>
+                <option value="Bitrot">Bitrot (Digital Decay)</option>
+                <option value="Datamosh">Datamosh (Video Artefact Audio)</option>
+                <option value="Neural Net Processed">Neural Net Processed</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label for="atmosfera" class="block text-orange-700 text-sm font-bold mb-2">Atmósfera / Mood:</label>
+            <select id="atmosfera" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Selecciona la atmósfera / Select the mood</option>
+                <option value="Happy">Happy</option>
+                <option value="Sad">Sad</option>
+                <option value="Energetic">Energetic</option>
+                <option value="Relaxed">Relaxed</option>
+                <option value="Aggressive">Aggressive</option>
+                <option value="Peaceful">Peaceful</option>
+                <option value="Dark">Dark</option>
+                <option value="Bright">Bright</option>
+                <option value="Romantic">Romantic</option>
+                <option value="Uplifting">Uplifting</option>
+                <option value="Nostalgic">Nostalgic (Lo-Fi/Synthwave)</option>
+                <option value="Urban">Urban (Hip Hop)</option>
+                <option value="Melancholic">Melancholic (Indie)</option>
+                <option value="Futuristic">Futuristic (Cyberpunk)</option>
+                <option value="Danceable">Danceable (Disco/Funk)</option>
+                <option value="Meditative">Meditative (Ambient)</option>
+                <option value="Chaotic">Chaotic (Experimental)</option>
+                <option value="Warm">Warm (Analog)</option>
+                <option value="Cold">Cold (Digital)</option>
+                <option value="Dreamy">Dreamy (Vaporwave)</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label for="emocion" class="block text-orange-700 text-sm font-bold mb-2">Emoción / Emotion:</label>
+            <select id="emocion" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Selecciona una emoción / Select an emotion</option>
+                <option value="Alegría">Alegría / Joyful</option>
+                <option value="Tristeza">Tristeza / Sadness</option>
+                <option value="Enojo">Enojo / Anger</option>
+                <option value="Miedo">Miedo / Fear</option>
+                <option value="Sorpresa">Sorpresa / Surprise</option>
+                <option value="Amor">Amor / Love</option>
+                <option value="Nostalgia">Nostalgia / Nostalgic</option>
+                <option value="Melancolía">Melancolía / Melancholic</option>
+                <option value="Euforia">Euforia / Euphoric</option>
+                <option value="Desesperación">Desesperación / Despair</option>
+                <option value="Serenidad">Serenidad / Serene</option>
+                <option value="Vulnerabilidad">Vulnerabilidad / Vulnerable</option>
+                <option value="Empoderamiento">Empoderamiento / Empowering</option>
+                <option value="Rebeldía">Rebeldía / Rebellious</option>
+                <option value="Pasión">Pasión / Passionate</option>
+                <option value="Éxtasis">Éxtasis / Ecstatic</option>
+                <option value="Agresividad">Agresividad / Aggressive</option>
+                <option value="Determinación">Determinación / Determined</option>
+                <option value="Bittersweet">Agridulce / Bittersweet</option>
+                <option value="Ensoñación">Ensoñación / Dreamy</option>
+                <option value="Misterio">Misterio / Mysterious</option>
+                <option value="Introspección">Introspección / Introspective</option>
+                <option value="Soledad">Soledad / Lonely</option>
+                <option value="Esperanza">Esperanza / Hopeful</option>
+                <option value="Comunidad">Comunidad / Communal</option>
+                <option value="Celebración">Celebración / Celebratory</option>
+                <option value="Solidaridad">Solidaridad / United</option>
+                <option value="Protesta">Protesta / Protest</option>
+                <option value="Liberación">Liberación / Liberating</option>
+                <option value="Sensualidad">Sensualidad / Sensual</option>
+                <option value="Glamour">Glamour / Glamorous</option>
+                <option value="Groove">Groove / Groovy</option>
+                <option value="Swag">Swag / Confident</option>
+                <option value="Darkness">Oscuridad / Dark</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label for="epoca" class="block text-orange-700 text-sm font-bold mb-2">Referencia de Época / Era Reference:</label>
+            <select id="epoca" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Selecciona una época / Select an era</option>
+                <option value="1950s">1950s</option>
+                <option value="1960s">1960s</option>
+                <option value="1970s">1970s</option>
+                <option value="1980s">1980s</option>
+                <option value="1990s">1990s</option>
+                <option value="2000s">2000s</option>
+                <option value="2010s">2010s</option>
+                <option value="Contemporary">Contemporary</option>
+                <option value="Futuristic">Futuristic</option>
+                <option value="Vintage">Vintage</option>
+                <option value="Lo-Fi 90s">Lo-Fi 90s (Nujabes style)</option>
+                <option value="Boom Bap 90s">Boom Bap 90s (Hip Hop golden era)</option>
+                <option value="Synth 80s">Synth 80s (Retro wave)</option>
+                <option value="Disco 70s">Disco 70s</option>
+                <option value="Funk 70s">Funk 70s</option>
+                <option value="Early Techno">Early Techno (Detroit 80s)</option>
+                <option value="IDM 2000s">IDM 2000s (Glitch era)</option>
+                <option value="Future Retro">Future Retro (Modern vintage)</option>
+                <option value="Post-Digital">Post-Digital (2020s)</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label for="estructura" class="block text-orange-700 text-sm font-bold mb-2">Estructura / Structure:</label>
+            <select id="estructura" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Selecciona estructura / Select structure</option>
+                <option value="Loopable">Loopable (Lo-Fi/Ambient)</option>
+                <option value="Verse-Chorus">Verse-Chorus (Hip Hop/Pop)</option>
+                <option value="Progressive">Progressive (House/Techno)</option>
+                <option value="Freeform">Freeform (Experimental)</option>
+                <option value="Build-Drop">Build-Drop (EDM)</option>
+                <option value="ABA">ABA Form (Jazz/Classical)</option>
+                <option value="Linear">Linear (Narrative)</option>
+                <option value="Asymmetrical">Asymmetrical (IDM)</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label for="exclusiones" class="block text-orange-700 text-sm font-bold mb-2">(Opcional) Exclusiones / Exclusions:</label>
+            <input type="text" id="exclusiones" placeholder="Palabras clave a excluir / Keywords to exclude" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+
+        <button id="generar-prompt" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4">Generar Prompt</button>
+
+        <div id="resultado" class="mt-4 p-4 bg-orange-50 text-orange-800 rounded-md shadow-inner border border-orange-200">
+            <p class="font-semibold">Prompt Generado:</p>
+            <p id="prompt-generado" class="text-gray-700"></p>
+        </div>
+
+        <button id="copiar-prompt" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4">Copiar Prompt</button>
+    </div>
+
+    <script>
+        const generarPromptBtn = document.getElementById('generar-prompt');
+        const promptGenerado = document.getElementById('prompt-generado');
+        const copiarPromptBtn = document.getElementById('copiar-prompt');
+
+        generarPromptBtn.addEventListener('click', () => {
+            const genero = document.getElementById('genero').value;
+            const subgenero = document.getElementById('subgenero').value;
+            const instrumentacion = document.getElementById('instrumentacion').value;
+            const produccion = document.getElementById('produccion').value;
+            const atmosfera = document.getElementById('atmosfera').value;
+            const emocion = document.getElementById('emocion').value;
+            const epoca = document.getElementById('epoca').value;
+            const estructura = document.getElementById('estructura').value;
+            const exclusiones = document.getElementById('exclusiones').value;
+
+            let prompt = '';
+
+            if (genero) {
+                prompt += `Genre: ${genero}, `;
+            }
+            if (subgenero) {
+                prompt += `Subgenre: ${subgenero}, `;
+            }
+            if (instrumentacion) {
+                prompt += `Key Instrumentation: ${instrumentacion}, `;
+            }
+            if (produccion) {
+                prompt += `Production: ${produccion}, `;
+            }
+            if (atmosfera) {
+                prompt += `Mood: ${atmosfera}, `;
+            }
+            if (emocion) {
+                prompt += `Emotion: ${emocion}, `;
+            }
+            if (epoca) {
+                prompt += `Era: ${epoca}, `;
+            }
+            if (estructura) {
+                prompt += `Structure: ${estructura}, `;
+            }
+            if (exclusiones) {
+                prompt += `Exclusions: ${exclusiones}`;
+            }
+
+            // Eliminar la coma final si existe
+            if (prompt.endsWith(', ')) {
+                prompt = prompt.slice(0, -2);
+            }
+
+            promptGenerado.textContent = prompt;
+        });
+
+        copiarPromptBtn.addEventListener('click', () => {
+            const promptText = promptGenerado.textContent;
+            navigator.clipboard.writeText(promptText).then(() => {
+                alert('¡Prompt copiado al portapapeles!');
+            }).catch(err => {
+                console.error('Error al copiar: ', err);
+                alert('No se pudo copiar el prompt. Por favor, selecciónalo y cópialo manualmente.');
+            });
+        });
+    </script>
+</body>
+</html>
