@@ -1,36 +1,53 @@
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Generator Prompts - by lotus D </title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Glacial+Indifference&display=swap" rel="stylesheet">
+    <title>Generador de Prompts para Suno AI</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        /* Estilos personalizados */
         body {
-            font-family: 'Glacial Indifference', sans-serif;
-            background-color: #f97316;
-            background-image: linear-gradient(to bottom, #f97316, #e85d04, #d94503, #c02e02, #a71e01);
-            background-size: 400% 400%;
-            animation: gradient 10s ease infinite;
+            font-family: 'Inter', sans-serif; /* Fuente base */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Fondo degradado atractivo */
         }
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .title-font {
+            font-family: 'Poppins', sans-serif; /* Fuente moderna para el título */
         }
-        .titulo-principal { font-family: 'Roboto Slab', serif; }
+        /* Estilo para mejorar el contraste del texto en los selectores */
+        select, textarea {
+            color: #1f2937; /* Color de texto oscuro para mejor legibilidad */
+        }
+        /* Estilo para el placeholder del selector */
+        select option[value=""] {
+            color: #9ca3af; /* Color gris para el placeholder */
+        }
+        /* Estilo para el botón de copiar */
+        .copy-button {
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+        .copy-button:active {
+            transform: scale(0.95); /* Efecto al presionar */
+        }
+        .copied {
+            background-color: #22c55e !important; /* Verde cuando se copia */
+            color: white !important;
+        }
     </style>
 </head>
-<body class="bg-orange-500 p-6">
-    <div class="container mx-auto rounded-lg shadow-md bg-orange-100 p-8">
-        <h1 class="titulo-principal text-3xl font-bold text-center text-orange-800 mb-6">Generador de Prompts para Suno IA</h1>
+<body class="min-h-screen flex items-center justify-center p-4 text-gray-100">
+    <div class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg p-8 rounded-xl shadow-2xl w-full max-w-2xl">
+        <h1 class="text-3xl md:text-4xl font-bold text-center mb-8 title-font text-white">Generador de Prompts para Suno AI</h1>
 
-        <div class="mb-4">
-            <label for="genero" class="block text-orange-700 text-sm font-bold mb-2">Género / Genre:</label>
-            <select id="genero" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                <option value="">Selecciona un género / Select a genre</option>
-                
-                <optgroup label="Populares / Mainstream">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+                <label for="genre" class="block text-sm font-medium mb-1 text-gray-200">Género</label>
+                <select id="genre" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 bg-white bg-opacity-80 shadow-sm text-gray-900">
+                    <option value="">-- Selecciona Género --</option>
+<optgroup label="Populares / Mainstream">
                     <option value="Pop">Pop</option>
                     <option value="Rock">Rock</option>
                     <option value="Hip Hop">Hip Hop</option>
@@ -42,8 +59,11 @@
                     <option value="Reggae">Reggae</option>
                     <option value="Lo-Fi">Lo-Fi</option>    
                     <option value="Indie">Indie</option>    
-                                        <option value="Classic Music">Classic Music/option>    
-                                            <option value="Folk">Folk/option> 
+                    <option value="Classical">Clásica</option>
+                                        <option value="Jazz">Jazz</option>
+                                     <option value="Funk">Funk</option>
+                                        <option value="Cinematic">Cinematic</option>
+                                            <option value="Folk">Folk</option> 
                     
                 </optgroup>
                 
@@ -69,6 +89,7 @@
                 </optgroup>
                 
                 <optgroup label="Latino / Latin">
+                      <option value="Latin">Latin</option>
                     <option value="Salsa">Salsa</option>
                     <option value="Cumbia">Cumbia</option>
                     <option value="Guaracha">Guaracha</option>
@@ -97,15 +118,18 @@
                     <option value="Cyberpunk">Cyberpunk (Estética sonora)</option>
                     <option value="Hybrid Trap">Hybrid Trap</option>
                 </optgroup>
-            </select>
-        </div>
+                </select>
+            </div>
 
-        <div class="mb-4">
-            <label for="subgenero" class="block text-orange-700 text-sm font-bold mb-2">Subgénero / Subgenre:</label>
-            <select id="subgenero" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                <option value="">Selecciona un subgénero / Select a subgenre</option>
-                
-                <optgroup label="Rock / Metal">
+
+
+
+            <div>
+                <label for="subgenre" class="block text-sm font-medium mb-1 text-gray-200">Subgénero</label>
+                <select id="subgenre" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 bg-white bg-opacity-80 shadow-sm text-gray-900">
+        <option value="">-- Selecciona Subgénero --</option>
+
+ <optgroup label="Rock / Metal">
                     <option value="Alternative Rock">Alternative Rock</option>
                     <option value="Grunge">Grunge</option>
                     <option value="Post Hardcore">Post Hardcore</option>
@@ -119,6 +143,7 @@
                 </optgroup>
                 
                 <optgroup label="Electrónica / Electronic">
+                                        <option value="Synthpop">Synthpop</option>
                     <option value="Techno">Techno</option>
                     <option value="Progressive Techno">Progressive Techno</option>
                     <option value="Dark Techno">Dark Techno</option>
@@ -133,6 +158,8 @@
                     <option value="Disco House">Disco House</option>
                     <option value="Minimal Techno">Minimal Techno</option>
                     <option value="Future House">Future House</option>
+
+                    
                 </optgroup>
                 
                 <optgroup label="Hip Hop / Trap">
@@ -141,6 +168,7 @@
                     <option value="Emo Trap">Emo Trap</option>
                     <option value="Drill Trap">Drill Trap</option>
                     <option value="Jazz Hop">Jazz Hop</option>
+                    <option value="Chill Hip Hop">Chill Hip Hop</option>
                     <option value="Lofi Hip Hop">Lofi Hip Hop</option>
                     <option value="Cloud Trap">Cloud Trap</option>
                     <option value="Trapeton">Trapeton</option>
@@ -156,6 +184,7 @@
                     <option value="Downtempo">Downtempo</option>
                     <option value="Electro Swing">Electro Swing</option>
                     <option value="Nu-Disco">Nu-Disco</option>
+                                        <option value="Smooth Jazz">Smooth Jazz</option>
                 </optgroup>
                 
                 <optgroup label="Experimentales">
@@ -168,12 +197,13 @@
                     <option value="Neurofunk">Neurofunk</option>
                     <option value="Jungle Terror">Jungle Terror</option>
                     <option value="Dark Synthwave">Dark Synthwave</option>
+                    
                 </optgroup>
                 
                 <optgroup label="Latino / Tropical">
                     <option value="Salsa Dura">Salsa Dura</option>
                     <option value="Cumbia Villera">Cumbia Villera</option>
-                    <option value="Reggaeton Underground">Reggaeton Underground</option>
+                    <option value="Reggaeton Old School">Reggaeton Old School</option>
                     <option value="Neoperreo">Neoperreo</option>
                     <option value="Ragga">Ragga</option>
                     <option value="Bashment">Bashment</option>
@@ -197,17 +227,27 @@
                     <option value="Sigilkore">Sigilkore</option>
                     <option value="Trap Metal">Trap Metal</option>
                     <option value="Hypergrunge">Hypergrunge</option>
+                    <option value="Bossa Nova">Bossa Nova</option>
+                    <option value="African Rhythms">Ritmos Africanos</option>
+                    <option value="Drone">Drone</option>
+                    <option value="Epic Score">Banda Sonora Épica</option>
+                                        <option value="Orchestral">Orquestal</option>
+    
                 </optgroup>
-            </select>
-        </div>
+                </select>
+            </div>
 
-        <div class="mb-4">
-            <label for="instrumentacion" class="block text-orange-700 text-sm font-bold mb-2">Instrumentación Clave / Key Instrumentation:</label>
-            <select id="instrumentacion" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                <option value="">Selecciona la instrumentación / Select instrumentation</option>
-                
-                <option value="Guitar">Guitar</option>
+
+
+
+
+            <div>
+                <label for="instrumentation" class="block text-sm font-medium mb-1 text-gray-200">Instrumentación Clave</label>
+                <select id="instrumentation" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 bg-white bg-opacity-80 shadow-sm text-gray-900">
+                    <option value="">-- Selecciona Instrumentación --</option>
+ <option value="Acoustic Guitar">Acoustic Guitar</option>
                                 <option value="Spanish Guitar"> Spanish Guitar</option>
+                                 <option value="Electric Guitar">Guitarra Eléctrica</option>
                                                 <option value="Overdrive Guitar"> Overdrive Guitar</option>
                 <option value="Piano">Piano</option>
                                 <option value="Dark Piano"> Dark Piano</option>
@@ -216,6 +256,8 @@
                                 <option value="acoustic Drums"> acoustic Drums</option>
                                                 <option value="Glitchy"> Glitchy</option>
                 <option value="Bass">Bass</option>
+                                    <option value="Saxophone">Saxofón</option>
+                                    <option value="Brass">Trumpet</option>
                 <option value="Groovy Bass"> Groovy Bass</option>                
                 <option value="Synthesizer">Synthesizer</option>
                 <option value="Vocals">Vocals</option>
@@ -224,7 +266,7 @@
                 <option value="Woodwinds">Woodwinds</option>
                 <option value="Percussion">Percussion</option>
                 <option value="Rhodes Piano">Rhodes Piano (Lo-Fi/Jazz)</option>
-                <option value="808 Bass">808 Bass (Hip Hop/Trap)</option>
+                <option value="Heavy 808 Bass">808 Bass (Hip Hop/Trap)</option>
                 <option value="Sampled Jazz">Sampled Jazz (Lo-Fi/Hip Hop)</option>
                 <option value="Analog Synths">Analog Synths (Synthwave)</option>
                 <option value="LinnDrum">LinnDrum (80s drums)</option>
@@ -253,36 +295,7 @@
                 <option value="Databent Audio">Databent Audio</option>
                 <option value="Granular Synthesis">Granular Synthesis</option>
                 <option value="Gameboy LSDJ">Gameboy LSDJ</option>
-            </select>
-        </div>
-
-        <div class="mb-4">
-            <label for="produccion" class="block text-orange-700 text-sm font-bold mb-2">Características de Producción / Production Characteristics:</label>
-            <select id="produccion" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                <option value="">Selecciona las características / Select characteristics</option>
-                <option value="Clean">Clean</option>
-                <option value="Vintage">Vintage</option>                
-                <option value="Distorted">Distorted</option>
-                <option value="Reverberant">Reverberant</option>
-                <option value="Lo-Fi">Lo-Fi (hiss de cinta, imperfecciones)</option>
-                <option value="Hi-Fi">Hi-Fi</option>
-                <option value="Acoustic">Acoustic</option>
-                <option value="Electric">Electric</option>
-                <option value="Live">Live</option>
-                <option value="Studio">Studio</option>
-                <option value="Minimalist">Minimalist</option>
-                <option value="Sidechain">Sidechain (Future Funk/EDM)</option>
-                <option value="Bitcrushed">Bitcrushed (Glitch/IDM)</option>
-                <option value="Tape Hiss">Tape Hiss (Lo-Fi/Vintage)</option>
-                <option value="Vinyl Noise">Vinyl Noise (Retro)</option>
-                <option value="Granular">Granular (Experimental)</option>
-                <option value="SP-1200">SP-1200 (Hip Hop vintage)</option>
-                <option value="SP-404 FX">SP-404 (Roland SP FX)</option>
-                <option value="DIY Garage">DIY Garage (Indie)</option>
-                <option value="Cyberpunk">Cyberpunk (Synthwave)</option>
-                <option value="Dreamy">Dreamy (Ambient)</option>
-                <option value="Raw">Raw (Boom Bap)</option>
-                <option value="Trap Hi-Hats">Trap Hi-Hats (Rápidos y complejos)</option>
+    <option value="Trap Hi-Hats">Trap Hi-Hats (Rápidos y complejos)</option>
                 <option value="Dembow Loop">Dembow Loop (Reggaeton base)</option>
                 <option value="Dub Echoes">Dub Echoes (Efectos espaciales)</option>
                 <option value="Ska Upstroke">Ska Upstroke (Guitarra característica)</option>
@@ -293,80 +306,29 @@
                 <option value="Riddim Growls">Riddim Growls (Basses distorsionados)</option>
                 <option value="Jungle Breaks">Jungle Breaks (Breakbeats complejos)</option>
                 <option value="G-Funk Whistle">G-Funk Whistle (Silbido característico)</option>
-                <option value="Cyberpunk Glitch">Cyberpunk Glitch (Interferencias digitales)</option>
-                <option value="Phonk Swing">Phonk Swing (Sampleo lo-fi)</option>
-                <option value="Bitrot">Bitrot (Digital Decay)</option>
-                <option value="Datamosh">Datamosh (Video Artefact Audio)</option>
-                <option value="Neural Net Processed">Neural Net Processed</option>
-            </select>
-        </div>
 
-        <div class="mb-4">
-            <label for="atmosfera" class="block text-orange-700 text-sm font-bold mb-2">Atmósfera / Mood:</label>
-            <select id="atmosfera" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                <option value="">Selecciona la atmósfera / Select the mood</option>
-                <option value="Happy">Happy</option>
-                                <option value="Groovy">Groovy</option>
-                                 <option value="Catchy">Catchy (Pegajoso)</option>
-                  <option value="Funky">Funky</option>
-                <option value="Sad">Sad</option>
-                <option value="Energetic">Energetic</option>
-                <option value="Relaxed">Relaxed</option>
-                <option value="Aggressive">Aggressive</option>
-                <option value="Peaceful">Peaceful</option>
-                <option value="Dark">Dark</option>
-                <option value="Bright">Bright</option>
-                <option value="Romantic">Romantic</option>
-                <option value="Uplifting">Uplifting</option>
-                <option value="Nostalgic">Nostalgic (Lo-Fi/Synthwave)</option>
-                <option value="Urban">Urban (Hip Hop)</option>
-                <option value="Melancholic">Melancholic (Indie)</option>
-                <option value="Futuristic">Futuristic (Cyberpunk)</option>
-                <option value="Danceable">Danceable (Disco/Funk)</option>
-                <option value="Meditative">Meditative (Ambient)</option>
-                <option value="Chaotic">Chaotic (Experimental)</option>
-                                <option value="Saturated">Saturated</option>
-                <option value="Warm">Warm (Analog)</option>
-                <option value="Cold">Cold (Digital)</option>
-                <option value="Dreamy">Dreamy (Vaporwave)</option>
-                                <option value="syncopated">Syncopated</option>
-                                                <option value="Grain Texture">Dreamy (Vaporwave)</option>
-            </select>
-        </div>
+                </select>
+            </div>
 
-        <div class="mb-4">
-            <label for="emocion" class="block text-orange-700 text-sm font-bold mb-2">Emoción / Emotion:</label>
-            <select id="emocion" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                <option value="">Selecciona una emoción / Select an emotion</option>
-       <option value="Joy">Alegría / Joyful</option>
-                       <option value="Chill">Tranquilo / Chill</option>
-                                       <option value="Soulful">Conmovedor / Soulful</option>
-<option value="Sadness">Tristeza / Sadness</option>
-<option value="Anger">Enojo / Anger</option>
-<option value="Fear">Miedo / Fear</option>
-<option value="Surprise">Sorpresa / Surprise</option>
-<option value="Love">Amor / Love</option>
-<option value="Nostalgia">Nostalgia / Nostalgic</option>
-<option value="Melancholy">Melancolía / Melancholic</option>
-<option value="Euphoria">Euforia / Euphoric</option>
-<option value="Despair">Desesperación / Despair</option>
-<option value="Serenity">Serenidad / Serene</option>
-<option value="Vulnerability">Vulnerabilidad / Vulnerable</option>
-<option value="Empowerment">Empoderamiento / Empowering</option>
-<option value="Rebellion">Rebeldía / Rebellious</option>
-<option value="Passion">Pasión / Passionate</option>
-<option value="Ecstasy">Éxtasis / Ecstatic</option>
-<option value="Aggressiveness">Agresividad / Aggressive</option>
-<option value="Determination">Determinación / Determined</option>
-<option value="Bittersweet">Agridulce / Bittersweet</option>
-<option value="Dreaminess">Ensoñación / Dreamy</option>
-<option value="Mystery">Misterio / Mysterious</option>
-<option value="Introspection">Introspección / Introspective</option>
-<option value="Loneliness">Soledad / Lonely</option>
-<option value="Hope">Esperanza / Hopeful</option>
-<option value="Community">Comunidad / Communal</option>
-<option value="Celebration">Celebración / Celebratory</option>
-<option value="Unity">Solidaridad / United</option>
+            <div>
+                <label for="emotion" class="block text-sm font-medium mb-1 text-gray-200">Emoción</label>
+                <select id="emotion" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 bg-white bg-opacity-80 shadow-sm text-gray-900">
+                    <option value="">-- Selecciona Emoción --</option>
+                    <option value="Happy">Feliz</option>
+                    <option value="Sad">Triste</option>
+                    <option value="Energetic">Energético</option>
+                    <option value="Calm">Calmado</option>
+                    <option value="Romantic">Romántico</option>
+                    <option value="Melancholic">Melancólico</option>
+                    <option value="Epic">Épico</option>
+                    <option value="Mysterious">Misterioso</option>
+                    <option value="Aggressive">Agresivo</option>
+                    <option value="Hopeful">Esperanzador</option>
+                    <option value="Nostalgic">Nostálgico</option>
+                    <option value="Uplifting">Edificante</option>
+                    <option value="Dark">Oscuro</option>
+                    <option value="Dreamy">Soñador</option>
+                    <option value="Anxious">Ansioso</option>
 <option value="Protest">Protesta / Protest</option>
 <option value="Liberation">Liberación / Liberating</option>
                 <option value="Sensuality">Sensualidad / Sensual</option>
@@ -374,13 +336,162 @@
                 <option value="Groove">Groove / Groovy</option>
                 <option value="Swag">Swag / Confident</option>
                 <option value="Darkness">Oscuridad / Dark</option>
-            </select>
-        </div>
+<option value="Bittersweet">Agridulce / Bittersweet</option>
+<option value="Dreamys">Ensoñación / Dreamy</option>
+<option value="Determination">Determinación / Determined</option>
+<option value="Euphoria">Euforia / Euphoric</option>
+<option value="Chill">Chill / Relax</option>
+<option value="Serenity">Serenidad / Serene</option>
+<option value="Empowerment">Empoderamiento / Empowering</option>
 
-        <div class="mb-4">
-            <label for="epoca" class="block text-orange-700 text-sm font-bold mb-2">Referencia de Época / Era Reference:</label>
-            <select id="epoca" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                <option value="">Selecciona una época / Select an era</option>
+
+
+
+
+
+
+
+
+                </select>
+            </div>
+
+            <div>
+                <label for="texture1" class="block text-sm font-medium mb-1 text-gray-200">Textura / FX 1</label>
+                <select id="texture1" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 bg-white bg-opacity-80 shadow-sm text-gray-900">
+                    <option value="">-- Selecciona Textura/FX --</option>
+<option value="Reverb-heavy">Heavy Reverb</option>
+<option value="Reverberant">Reverberant</option>
+<option value="Distorted">Distorted</option>
+<option value="Clean">Clean</option>
+<option value="Lo-fi">Lo-fi</option>
+<option value="Hi-Fi">Hi-Fi</option>
+<option value="Atmospheric">Atmospheric</option>
+<option value="Acoustic">Acoustic</option>
+<option value="Minimalist">Minimalist</option>
+<option value="Layered">Layered</option>
+<option value="Crisp">Crisp</option>
+<option value="Warm">Warm (Analog)</option>
+<option value="Glitchy">Glitchy</option>
+<option value="Delayed">Delayed</option>
+<option value="Phased">Phased</option>
+<option value="Compressed">Compressed</option>
+<option value="Spacious">Spacious</option>
+                <option value="Cold">Cold (Digital)</option>
+                <option value="Dreamy">Dreamy (Vaporwave)</option>
+                                <option value="syncopated">Syncopated</option>
+                <option value="Bright">Bright</option>
+                <option value="Vintage">Vintage</option>
+                <option value="Heavy Bass">Heavy Bass</option>
+                <option value="Deep Bass">Deep Bass</option>
+                <option value="Boom Bap 90s">Boom Bap 90s (Hip Hop golden era)</option>
+                <option value="Synth 80s">Synth 80s (Retro wave)</option>
+                <option value="Disco 70s">Disco 70s</option>
+                <option value="Funk 70s">Funk 70s</option>
+                <option value="Early Techno">Early Techno (Detroit 80s)</option>
+                <option value="IDM 2000s">IDM 2000s (Glitch era)</option>
+                <option value="Future Retro">Future Retro (Modern vintage)</option>
+                <option value="Post-Digital">Post-Digital (2020s)</option>
+                <option value="TR-707">Roland TR-707 (Old House)</option>
+                <option value="TR-808">Roland TR-808 </option>
+                <option value="TR-909">Roland TR-808 </option>
+          <option value="Live">Live</option>
+                <option value="Sidechain">Sidechain (Future Funk/EDM/Hip Hop)</option>
+                <option value="Bitcrushed">Bitcrushed (Glitch/IDM)</option>
+                <option value="Tape Hiss">Tape Hiss (Lo-Fi/Vintage)</option>
+                <option value="Vinyl Noise">Vinyl Noise (Retro)</option>
+                <option value="Granular">Granular (Experimental)</option>
+                <option value="SP-1200">SP-1200 (Hip Hop vintage)</option>
+                <option value="SP-404 FX">SP-404 (Roland SP FX)</option>
+                <option value="MPC 2000">MPC 2000 (Hip Hop Vintage)</option>
+                <option value="DIY Garage">DIY Garage (Indie)</option>
+                <option value="Cyberpunk Glitch">Cyberpunk Glitch (Interferencias digitales)</option>
+                <option value="Phonk Swing">Phonk Swing (Sampleo lo-fi)</option>
+
+    <option value="Vinyl Distortion">Vinyl Distortion</option>
+                <option value="Studio">Studio</option>
+                <option value="Isolator">Studio</option>
+                <option value="Low Pass Filter">Studio</option>
+
+
+
+
+                </select>
+            </div>
+
+            <div>
+                <label for="texture2" class="block text-sm font-medium mb-1 text-gray-200">Textura / FX 2</label>
+                <select id="texture2" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 bg-white bg-opacity-80 shadow-sm text-gray-900">
+                    <option value="">-- Selecciona Textura/FX --</option>
+                       <option value="Reverb-heavy">Con mucha Reverb</option>
+                <option value="Reverberant">Reverberant</option>
+                    <option value="Distorted">Distorsionado</option>
+                    <option value="Clean">Limpio</option>
+                    <option value="Lo-fi">Lo-fi</option>
+                <option value="Hi-Fi">Hi-Fi</option>
+                    <option value="Atmospheric">Atmosférico</option>
+                <option value="Acoustic">Acoustic</option>
+                    <option value="Minimalist">Minimalista</option>
+                    <option value="Layered">En capas</option>
+                    <option value="Crisp">Nítido</option>
+                <option value="Warm">Warm (Analog)</option>
+                    <option value="Glitchy">Con Glitches</option>
+                    <option value="Delayed">Con Delay</option>
+                    <option value="Phased">Con Phaser</option>
+                    <option value="Compressed">Comprimido</option>
+                    <option value="Spacious">Espacioso</option>
+                <option value="Cold">Cold (Digital)</option>
+                <option value="Dreamy">Dreamy (Vaporwave)</option>
+                                <option value="syncopated">Syncopated</option>
+                <option value="Bright">Bright</option>
+                <option value="Vintage">Vintage</option>
+                <option value="Heavy Bass">Heavy Bass</option>
+                <option value="Deep Bass">Deep Bass</option>
+                <option value="Boom Bap 90s">Boom Bap 90s (Hip Hop golden era)</option>
+                <option value="Synth 80s">Synth 80s (Retro wave)</option>
+                <option value="Disco 70s">Disco 70s</option>
+                <option value="Funk 70s">Funk 70s</option>
+                <option value="Early Techno">Early Techno (Detroit 80s)</option>
+                <option value="IDM 2000s">IDM 2000s (Glitch era)</option>
+                <option value="Future Retro">Future Retro (Modern vintage)</option>
+                <option value="Post-Digital">Post-Digital (2020s)</option>
+                <option value="TR-707">Roland TR-707 (Old House)</option>
+                <option value="TR-808">Roland TR-808 </option>
+                <option value="TR-909">Roland TR-808 </option>
+          <option value="Live">Live</option>
+                <option value="Sidechain">Sidechain (Future Funk/EDM/Hip Hop)</option>
+                <option value="Bitcrushed">Bitcrushed (Glitch/IDM)</option>
+                <option value="Tape Hiss">Tape Hiss (Lo-Fi/Vintage)</option>
+                <option value="Vinyl Noise">Vinyl Noise (Retro)</option>
+                <option value="Granular">Granular (Experimental)</option>
+                <option value="SP-1200">SP-1200 (Hip Hop vintage)</option>
+                <option value="SP-404 FX">SP-404 (Roland SP FX)</option>
+                <option value="MPC 2000">MPC 2000 (Hip Hop Vintage)</option>
+                <option value="DIY Garage">DIY Garage (Indie)</option>
+                <option value="Cyberpunk Glitch">Cyberpunk Glitch (Interferencias digitales)</option>
+                <option value="Phonk Swing">Phonk Swing (Sampleo lo-fi)</option>
+
+    <option value="Vinyl Distortion">Vinyl Distortion</option>
+                <option value="Studio">Studio</option>
+                <option value="Isolator">Studio</option>
+                <option value="Low Pass Filter">Studio</option>
+
+
+
+
+                </select>
+            </div>
+
+            <div>
+                <label for="era" class="block text-sm font-medium mb-1 text-gray-200">Estilo/Style</label>
+                <select id="era" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 bg-white bg-opacity-80 shadow-sm text-gray-900">
+                    <option value="">-- Selecciona Época --</option>
+
+                    <option value="Modern">Moderno</option>
+>
+                    <option value="Vintage">Vintage</option>
+                    <option value="Baroque">Barroco</option>
+                    <option value="Medieval">Medieval</option>
+
                 <option value="1950s">1950s</option>
                 <option value="1960s">1960s</option>
                 <option value="1970s">1970s</option>
@@ -400,102 +511,142 @@
                 <option value="IDM 2000s">IDM 2000s (Glitch era)</option>
                 <option value="Future Retro">Future Retro (Modern vintage)</option>
                 <option value="Post-Digital">Post-Digital (2020s)</option>
-            </select>
+           <option value="Underground">Underground </option>
+          <option value="Experimental">Experimental </option>
+          <option value="Indie">Indie </option>
+          <option value="Old School">Old School </option>
+                <option value="Urban">Urban </option>
+                <option value="Chaotic">Chaotic (Experimental)</option>
+                  <option value="Funky">Funky</option>
+                  <option value="Groovy">Groovy</option>
+    <option value="syncopated">Syncopated</option>
+<option value="Catchy">Catchy (Pegajoso)</option>
+
+
+
+
+
+                </select>
+            </div>
+
+            <div>
+                <label for="exclusions" class="block text-sm font-medium mb-1 text-gray-200">Exclusiones (Opcional)</label>
+                <select id="exclusions" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 bg-white bg-opacity-80 shadow-sm text-gray-900">
+                    <option value="">-- Sin Exclusiones --</option>
+                    <option value="no vocals">Sin Voces</option>
+                    <option value="no drums">Sin Batería</option>
+                    <option value="no guitar">Sin Guitarra</option>
+                    <option value="no synth">Sin Sintetizador</option>
+                    <option value="instrumental only">Solo Instrumental</option>
+                    <option value="no mainstream">No Mainstream</option>
+
+
+
+                </select>
+            </div>
         </div>
 
-        <div class="mb-4">
-            <label for="estructura" class="block text-orange-700 text-sm font-bold mb-2">Estructura / Structure:</label>
-            <select id="estructura" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                <option value="">Selecciona estructura / Select structure</option>
-                <option value="Loopable">Loopable (Lo-Fi/Ambient)</option>
-                <option value="Verse-Chorus">Verse-Chorus (Hip Hop/Pop)</option>
-                <option value="Progressive">Progressive (House/Techno)</option>
-                <option value="Freeform">Freeform (Experimental)</option>
-                <option value="Build-Drop">Build-Drop (EDM)</option>
-                <option value="ABA">ABA Form (Jazz/Classical)</option>
-                <option value="Linear">Linear (Narrative)</option>
-                <option value="Asymmetrical">Asymmetrical (IDM)</option>
-            </select>
+        <div class="text-center mb-6">
+            <button id="generateBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                Generar Prompt
+            </button>
         </div>
 
-        <div class="mb-4">
-            <label for="exclusiones" class="block text-orange-700 text-sm font-bold mb-2">(Opcional) Exclusiones / Exclusions:</label>
-            <input type="text" id="exclusiones" placeholder="Palabras clave a excluir / Keywords to exclude" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        <div class="mb-6">
+            <label for="result" class="block text-sm font-medium mb-1 text-gray-200">Prompt Generado (en Inglés):</label>
+            <textarea id="result" rows="4" class="w-full p-3 rounded-lg border border-gray-300 bg-white bg-opacity-80 shadow-sm text-gray-900 resize-none" readonly placeholder="Aquí aparecerá tu prompt..."></textarea>
         </div>
 
-        <button id="generar-prompt" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4">Generar Prompt</button>
-
-        <div id="resultado" class="mt-4 p-4 bg-orange-50 text-orange-800 rounded-md shadow-inner border border-orange-200">
-            <p class="font-semibold">Prompt Generado:</p>
-            <p id="prompt-generado" class="text-gray-700"></p>
+        <div class="text-center">
+            <button id="copyBtn" class="copy-button bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-lg shadow-md">
+                Copiar Prompt
+            </button>
         </div>
-
-        <button id="copiar-prompt" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4">Copiar Prompt</button>
     </div>
 
     <script>
-        const generarPromptBtn = document.getElementById('generar-prompt');
-        const promptGenerado = document.getElementById('prompt-generado');
-        const copiarPromptBtn = document.getElementById('copiar-prompt');
+        // Referencias a los elementos del DOM
+        const genreSelect = document.getElementById('genre');
+        const subgenreSelect = document.getElementById('subgenre');
+        const instrumentationSelect = document.getElementById('instrumentation');
+        const emotionSelect = document.getElementById('emotion');
+        const texture1Select = document.getElementById('texture1');
+        const texture2Select = document.getElementById('texture2');
+        const eraSelect = document.getElementById('era');
+        const exclusionsSelect = document.getElementById('exclusions');
+        const generateBtn = document.getElementById('generateBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const resultTextarea = document.getElementById('result');
 
-        generarPromptBtn.addEventListener('click', () => {
-            const genero = document.getElementById('genero').value;
-            const subgenero = document.getElementById('subgenero').value;
-            const instrumentacion = document.getElementById('instrumentacion').value;
-            const produccion = document.getElementById('produccion').value;
-            const atmosfera = document.getElementById('atmosfera').value;
-            const emocion = document.getElementById('emocion').value;
-            const epoca = document.getElementById('epoca').value;
-            const estructura = document.getElementById('estructura').value;
-            const exclusiones = document.getElementById('exclusiones').value;
+        // Event Listener para el botón de generar
+        generateBtn.addEventListener('click', () => {
+            // Recoger los valores seleccionados (en inglés)
+            const selectedValues = [
+                genreSelect.value,
+                subgenreSelect.value,
+                instrumentationSelect.value,
+                emotionSelect.value,
+                texture1Select.value,
+                texture2Select.value,
+                eraSelect.value,
+                exclusionsSelect.value
+            ];
 
-            let prompt = '';
+            // Filtrar valores vacíos y unir con comas
+            // Suno a menudo funciona bien con una lista de descriptores separados por comas.
+            const prompt = selectedValues.filter(value => value !== "").join(', ');
 
-            if (genero) {
-                prompt += `Create a ${genero} track, `;
-            }
-            if (subgenero) {
-                prompt += ` ${subgenero} vibes,`;
-            }
-            if (instrumentacion) {
-                prompt += ` ${instrumentacion}, `;
-            }
-            if (produccion) {
-                prompt += ` ${produccion} texture, `;
-            }
-            if (atmosfera) {
-                prompt += `Mood ${atmosfera}, `;
-            }
-            if (emocion) {
-                prompt += ` ${emocion} Vibe, `;
-            }
-            if (epoca) {
-                prompt += `Era ${epoca}, `;
-            }
-            if (estructura) {
-                prompt += ` ${estructura}, `;
-            }
-            if (exclusiones) {
-                prompt += ` ${exclusiones}`;
-            }
+            // Mostrar el prompt en el textarea
+            resultTextarea.value = prompt;
 
-            // Eliminar la coma final si existe
-            if (prompt.endsWith(', ')) {
-                prompt = prompt.slice(0, -2);
-            }
-
-            promptGenerado.textContent = prompt;
+            // Resetear el botón de copiar si estaba en estado "Copiado"
+            copyBtn.textContent = 'Copiar Prompt';
+            copyBtn.classList.remove('copied', 'bg-green-500'); // Asegurarse que no quede verde
+             copyBtn.classList.add('bg-teal-500', 'hover:bg-teal-600');
         });
 
-        copiarPromptBtn.addEventListener('click', () => {
-            const promptText = promptGenerado.textContent;
-            navigator.clipboard.writeText(promptText).then(() => {
-                alert('¡Prompt copiado al portapapeles!');
-            }).catch(err => {
-                console.error('Error al copiar: ', err);
-                alert('No se pudo copiar el prompt. Por favor, selecciónalo y cópialo manualmente.');
+        // Event Listener para el botón de copiar
+        copyBtn.addEventListener('click', () => {
+            const textToCopy = resultTextarea.value;
+
+            if (textToCopy) {
+                navigator.clipboard.writeText(textToCopy)
+                    .then(() => {
+                        // Éxito al copiar
+                        copyBtn.textContent = '¡Copiado!';
+                        copyBtn.classList.remove('bg-teal-500', 'hover:bg-teal-600');
+                        copyBtn.classList.add('copied'); // Añade clase para feedback visual
+
+                        // Volver al texto original después de 2 segundos
+                        setTimeout(() => {
+                            copyBtn.textContent = 'Copiar Prompt';
+                            copyBtn.classList.remove('copied');
+                            copyBtn.classList.add('bg-teal-500', 'hover:bg-teal-600');
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        // Error al copiar (puede ocurrir por permisos o navegador no compatible)
+                        console.error('Error al copiar el texto: ', err);
+                        resultTextarea.value = 'Error al copiar. Intenta manualmente.'; // Informar al usuario
+                    });
+            } else {
+                 resultTextarea.value = 'Primero genera un prompt para copiar.'; // Informar si no hay nada que copiar
+            }
+        });
+
+         // Añadir listeners para resetear el botón de copiar si se cambia alguna selección
+        const selects = [genreSelect, subgenreSelect, instrumentationSelect, emotionSelect, texture1Select, texture2Select, eraSelect, exclusionsSelect];
+        selects.forEach(select => {
+            select.addEventListener('change', () => {
+                 if (copyBtn.classList.contains('copied')) {
+                    copyBtn.textContent = 'Copiar Prompt';
+                    copyBtn.classList.remove('copied', 'bg-green-500');
+                    copyBtn.classList.add('bg-teal-500', 'hover:bg-teal-600');
+                 }
             });
         });
+
     </script>
 </body>
 </html>
+
