@@ -600,21 +600,44 @@
 
         // Event Listener para el botón de generar
         generateBtn.addEventListener('click', () => {
-            // Recoger los valores seleccionados (en inglés)
-            const selectedValues = [
-                genreSelect.value,
-                subgenreSelect.value,
+        // Array para construir el prompt
+            const promptParts = ["Create a"]; // Iniciar con "Create a"
+
+            // Obtener género y subgénero
+            const genre = genreSelect.value;
+            const subgenre = subgenreSelect.value;
+
+            if (genre) {
+                promptParts.push(genre);
+            }
+            if (subgenre) {
+                promptParts.push(subgenre);
+                promptParts.push("track"); // Añadir "track" después del subgénero
+            } else if (genre) {
+                 // Si no hay subgénero pero sí género, añadir "track" después del género
+                 promptParts.push("track");
+            }
+
+            // Obtener el resto de los valores
+            const otherValues = [
                 instrumentationSelect.value,
                 emotionSelect.value,
                 texture1Select.value,
                 texture2Select.value,
                 eraSelect.value,
                 exclusionsSelect.value
-            ];
+            ].filter(value => value !== ""); // Filtrar vacíos
 
-            // Filtrar valores vacíos y unir con comas
-            // Suno a menudo funciona bien con una lista de descriptores separados por comas.
-            const prompt = selectedValues.filter(value => value !== "").join(', ');
+            // Unir todas las partes
+            // Usar join(', ') para los elementos restantes si existen
+            let prompt = promptParts.join(' ');
+            if (otherValues.length > 0) {
+                 // Añadir coma solo si ya hay contenido y se van a añadir más elementos
+                 if (promptParts.length > 1) { // Mayor que 1 porque "Create a" siempre está
+                     prompt += ',';
+                 }
+                 prompt += ' ' + otherValues.join(', ');
+            }
 
             // Mostrar el prompt en el textarea
             resultTextarea.value = prompt;
@@ -669,4 +692,3 @@
     </script>
 </body>
 </html>
-
